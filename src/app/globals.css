@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: #07070A;
+  color: #E5E5EA;
+}
+
+/* Sandpack height fix: SandpackProvider's .sp-wrapper has no intrinsic height,
+   so child Preview/Layout/FileExplorer/CodeEditor's `height: 100%` lands on
+   a 0-height parent. Force the entire chain to fill its container. */
+.sp-wrapper,
+.sp-layout,
+.sp-stack,
+.sp-file-explorer,
+.sp-code-editor {
+  height: 100% !important;
+}
+
+@theme inline {
+  --color-bg: #07070A;
+  --color-bg-elev: #101016;
+  --color-bg-card: #14141C;
+  --color-border: #23232E;
+  --color-border-hi: #2E2E3C;
+  --color-fg: #E5E5EA;
+  --color-fg-dim: #9090A0;
+  --color-fg-muted: #5C5C70;
+  --color-accent: #7C5CFF;
+  --color-accent-2: #FF6CC7;
+  --color-accent-3: #39C5BB;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  background:
+    radial-gradient(1200px 800px at 20% -10%, rgba(124, 92, 255, 0.10), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, rgba(255, 108, 199, 0.07), transparent 60%),
+    #07070A;
+  background-attachment: fixed;
+  font-family: var(--font-sans);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1d1d27; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #2a2a38; }
+
+@keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: 0.2 } }
+.caret::after {
+  content: "▍";
+  margin-left: 1px;
+  color: #7C5CFF;
+  animation: blink 1s infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.25s ease-out; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 8s linear infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0 }
+  100% { background-position: 200% 0 }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(124,92,255,0.25) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
